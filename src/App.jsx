@@ -3,6 +3,22 @@ import Chart from "react-apexcharts";
 
 function App() {
   const [petPrices, setPetPrice] = useState([]);
+  const [petChart, setPetChart] = useState({
+    options: {
+      chart: {
+        id: "basic-bar",
+      },
+      xaxis: {
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+      },
+    },
+    series: [
+      {
+        name: "series-1",
+        data: [30, 40, 45, 50, 49, 60, 70, 91],
+      },
+    ],
+  });
 
   useEffect(() => {
     fetch("https://weak-pear-binturong-belt.cyclic.app/pets_price")
@@ -11,7 +27,9 @@ function App() {
         console.log(result);
         setPetPrice(result);
       });
-    fetch("https://colorful-moccasins-duck.cyclic.app/pets_price_chart")
+    fetch(
+      "https://https://weak-pear-binturong-belt.cyclic.app/pets_price_chart"
+    )
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
@@ -33,23 +51,6 @@ function App() {
         });
       });
   }, []);
-
-  const [petChart, setPetChart] = useState({
-    options: {
-      chart: {
-        id: "basic-bar",
-      },
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-      },
-    },
-    series: [
-      {
-        name: "series-1",
-        data: [30, 40, 45, 50, 49, 60, 70, 91],
-      },
-    ],
-  });
 
   return (
     <div>
