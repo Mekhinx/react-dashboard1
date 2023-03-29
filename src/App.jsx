@@ -11,29 +11,28 @@ function App() {
         console.log(result);
         setPetPrice(result);
       });
-  }, []);
-
-  fetch("https://colorful-moccasins-duck.cyclic.app/pets_price_chart")
-    .then((res) => res.json())
-    .then((result) => {
-      console.log(result);
-      setPetChart({
-        options: {
-          chart: {
-            id: "basic-bar",
+    fetch("https://colorful-moccasins-duck.cyclic.app/pets_price_chart")
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        setPetChart({
+          options: {
+            chart: {
+              id: "basic-bar",
+            },
+            xaxis: {
+              categories: result.petNames,
+            },
           },
-          xaxis: {
-            categories: result.petNames,
-          },
-        },
-        series: [
-          {
-            name: "ราคา",
-            data: result.prices,
-          },
-        ],
+          series: [
+            {
+              name: "ราคา",
+              data: result.prices,
+            },
+          ],
+        });
       });
-    });
+  }, []);
 
   const [petChart, setPetChart] = useState({
     options: {
